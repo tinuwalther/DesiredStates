@@ -21,7 +21,7 @@ configuration DesiredServiceState
 }
 
 #Generate MOF-File
-#$services = @('Eventlog','MpsSvc','LanmanServer','Schedule')
+#$services = @('Eventlog','MpsSvc','LanmanServer','Schedule','wuauserv','Netlogon','WinRM','W32Time')
 #DesiredServiceState -ServiceNames $services -OutputPath "C:\Work\DscRepo"
 
 #Start DSC Configuration manual
