@@ -3,6 +3,7 @@ configuration DesiredServiceState{
         [Array]$Services
     )
     Import-DscResource -ModuleName PSDesiredStateConfiguration
+
     Node localhost{
         foreach($item in $Services){
             $name="$($item.ServiceName)-ShouldBe-$($item.ServiceType)-and-$($item.ServiceState)"
@@ -16,7 +17,7 @@ configuration DesiredServiceState{
     }
 }
 
-#Generate an array of PSCustomObjects of the ServiceConfiguration
+#Generate PSCustomObject of ServiceConfiguration
 $ServiceConfiguration  = @()
 
 #Generate configuration of the automatic services and their required services
@@ -36,12 +37,12 @@ foreach($item in $AutoRunningServices){
     $ServiceConfiguration += $ServiceObject
 }
 
-#Generate configuration of the manual services
-$ManualStoppedServices = @('wuauserv','Netlogon','W32Time')
-foreach($item in $ManualStoppedServices){ 
+#Generate configuration of the disabled services
+$DisabledStoppedServices = @('NetTcpPortSharing','SharedAccess')
+foreach($item in $DisabledStoppedServices){ 
     [PSCustomObject]$ServiceObject = @{
         ServiceName  = $item
-        ServiceType  = 'Manual'
+        ServiceType  = 'Disabled'
         ServiceState = 'Stopped'
     }
     $ServiceConfiguration += $ServiceObject
