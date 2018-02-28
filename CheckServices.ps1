@@ -13,3 +13,4 @@ foreach($item in $services){
     }
 }
 $psoServices | ft -AutoSize
+$psoServices | ConvertTo-Json -Compress | Out-File 'C:\Work\Services.json'
