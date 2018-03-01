@@ -1,3 +1,7 @@
+# Get all Services with StartMode Automatic
+Get-WmiObject Win32_Service | Where-Object {$_.StartMode -eq 'Auto'} | Select Name,DisplayName,State,StartMode | ft -AutoSize
+
+# Export Service Configuration to a JSON
 $services = @('Eventlog','MpsSvc','LanmanServer','Schedule','wuauserv','Netlogon','WinRM','W32Time')
 $psoServices = @()
 foreach($item in $services){
