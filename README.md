@@ -1,4 +1,5 @@
 # DesiredStates
+Manage nfrastructure with configuration as code.  
 
 ## DesiredServiceState.ps1  
 The DesiredServiceState-Configuration configure:  
